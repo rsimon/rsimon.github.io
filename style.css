@@ -1,9 +1,9 @@
 body {
   padding: 0px;
   margin: 0px;
-  font-family: verdana, helvetica, arial;
+  font-family: arial, helvetica, verdana;
   font-size: 14px;
-  color: #42454C;
+  color: #424242;
   line-height:140%
 }	
 
@@ -11,7 +11,7 @@ h1 {
   margin: 0px;
   padding: 10px 0px 2px 0px;
   font-size: 16px;
-  color: #A21607;
+  color: #424242;
   font-weight: bold;
   font-family: arial, helvetica, verdana;
 }
@@ -19,11 +19,6 @@ h1 {
 p {
   margin: 6px 0px 0px 0px;
   padding: 0px 0px 15px 0px;
-}
-
-em {
-  color: #A21607;
-  font-style: normal;
 }
 
 .photo { 
@@ -35,11 +30,11 @@ em {
 }
 
 .contactInfo {
- padding: 0px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
 }	
 
 .intro {
- clear: both;
+  clear: both;
 }
 
 .award {
@@ -51,87 +46,56 @@ em {
 
 #menu {
   margin: 0px;
-  background-color: #696E79;
-  height: 70px;
-  position: absolute;
-  top: 0px;
+  padding: 0px;
+  background-color: #e5e5e5;
   width: 100%;
+  border-bottom:1px solid #d2d2d2;
 }
 
 #menu ul {
   display: inline;
   margin: 0px;
-  padding: 0px;
+  padding: 0px 0px 0px 45px;
 }
 
 #menu li {
-  display: inline;
+  display: inline-block;
+  position: relative;
+  top: 4px;
   list-style: none;
   margin: 0px;
-  padding: 0px;
-  float:left;
+  padding: 20px 10px 5px 10px;
+  border-bottom:4px solid transparent;
+}
+
+#menu li:hover {
+  border-bottom:4px solid orange;
+}
+
+#menu li a.active {
+  color: #424242;
+}
+
+#menu li a:hover {
+  color: #848484;
 }
 
 #menu li a {
-  display: block;
-  height: 70px;
-  margin: 0px;
-  padding: 0px;
-  text-indent: -999999px;
-  overflow: hidden;
+  color: #424242;
+  text-decoration:none;
 }
 
-#menu .fixed a {
-  background: url(home.png);
-  background-position: 0px 0px;
-  width: 59px;
-}
-
-#menu .home a {
-  background: url(home.png);
-  background-position: -59px 0px;
-  width: 59px;
-}
-
-#menu .home a:hover {
-  background: url(home.png);
-  background-position: -118px 0px;
-  width: 59px;
-}
-
-#menu .cv a {
-  background: url(cv.png);
-  background-position: -41px 0px;
-  width: 41px;
-}
-
-#menu .cv a:hover {
-  background: url(cv.png);
-  background-position: -82px 0px;
-  width: 41px;
-}
-
-#menu .publications a {
-  background: url(publications.png);
-  background-position: -109px 0px;
-  width: 109px;
-}
-
-#menu .publications a:hover {
-  background: url(publications.png);
-  background-position: -218px 0px;
-  width: 109px;
+#menu li a:visited {
+  color:#424242;
 }
 
 #content {
   padding: 25px 80px 60px 45px;
-  position: absolute;
-  top: 80px;
   max-width: 850px;
 }
 
 #content a {
-  color: #A21607;
+  color: black;
 }
 
 #content a:hover {
