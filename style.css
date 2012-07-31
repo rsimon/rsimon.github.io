@@ -72,20 +72,16 @@ p {
   border-bottom:4px solid orange;
 }
 
-#menu li a.active {
-  color: #424242;
-}
-
-#menu li a:hover {
-  color: #848484;
-}
-
 #menu li a {
-  color: #424242;
+  color: #a8a8a8;
   text-decoration:none;
 }
 
-#menu li a:visited {
+#menu li.active a {
+  color: #424242;
+}
+
+#menu li:hover a {
   color:#424242;
 }
 
