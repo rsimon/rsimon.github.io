@@ -69,7 +69,7 @@ p {
 }
 
 #menu li:hover {
-  border-bottom:4px solid orange;
+  border-bottom:4px solid #aaaaff;
 }
 
 #menu li a {
