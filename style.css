@@ -3,7 +3,7 @@ body {
   margin: 0px;
   font-family: arial, helvetica, verdana;
   font-size: 14px;
-  color: #424242;
+  color: #323232;
   line-height:140%
 }	
 
@@ -11,7 +11,7 @@ h1 {
   margin: 0px;
   padding: 10px 0px 2px 0px;
   font-size: 16px;
-  color: #424242;
+  color: #790B1A;
   font-weight: bold;
   font-family: arial, helvetica, verdana;
 }
@@ -25,23 +25,25 @@ p {
   margin: 10px 25px 25px 0px;
   border-width: 1px;
   border-style: solid;
-  border-color: #696E79;
+  border-color: #7C7C7C;
   float: left;
 }
 
-.contactInfo {
-  padding: 0px 0px 20px 0px;
-}	
+#content .contactInfo { padding: 0px; }
+#content .contactInfo img { margin-right:5px; }
+#content .contactInfo a:hover { background-color: transparent; }	
 
-.intro {
-  clear: both;
-}
+.intro { clear:both; }
 
 .award {
-  background-color: #E8E8E9; 
+  background-color: #E8E8E8; 
   padding: 10px;
   margin-top: 12px;
   margin-bottom: 15px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
 }
 
 #menu {
@@ -61,15 +63,11 @@ p {
 #menu li {
   display: inline-block;
   position: relative;
-  top: 4px;
+  top: 6px;
   list-style: none;
   margin: 0px;
-  padding: 10px 10px 2px 10px;
-  border-bottom:4px solid transparent;
-}
-
-#menu li:hover {
-  border-bottom:4px solid #aaaaff;
+  padding: 30px 10px 2px 10px;
+  border-bottom:6px solid transparent;
 }
 
 #menu li a {
@@ -77,26 +75,17 @@ p {
   text-decoration:none;
 }
 
-#menu li.active a {
-  color: #424242;
-}
-
-#menu li:hover a {
-  color:#424242;
-}
+#menu li:hover { border-bottom:6px solid #790B1A; }
+#menu li.active a { color: #323232; }
+#menu li:hover a { color: #323232; }
 
 #content {
   padding: 25px 80px 60px 45px;
   max-width: 850px;
 }
 
-#content a {
-  color: black;
-}
-
-#content a:hover {
-  background-color: #E8E8E9;
-}
+#content a { color: #790B1A; }
+#content a:hover { background-color: #E8E8E9;}
 
 #content ul {
   list-style-type: square;
