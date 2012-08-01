@@ -16,6 +16,8 @@ h1 {
   font-family: arial, helvetica, verdana;
 }
 
+strong { color: #790B1A; }
+
 p {
   margin: 6px 0px 0px 0px;
   padding: 0px 0px 15px 0px;
