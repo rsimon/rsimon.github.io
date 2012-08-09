@@ -75,6 +75,7 @@ p {
 #menu li a {
   color: #646464;
   text-decoration:none;
+  text-shadow: 0px 1px 1px #232323;
 }
 
 #menu li:hover { 
