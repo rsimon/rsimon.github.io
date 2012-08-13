@@ -33,10 +33,25 @@ function onMouseDrag(event) {
 
 function onMouseMove(event) {
   if (fEditBox) {
-    var delta = (basePath.segments[1].point - basePath.segments[0].point);  
-    var dx = delta.y / delta.x * (basePath.lastSegment.point.y - event.point.y);
-    box.segments[2].point = new Point(basePath.lastSegment.point.x + dx, event.point.y);
-    box.segments[3].point = new Point(basePath.segments[0].point.x + dx, event.point.y - delta.y);
+    // Shortcuts for basepath start (A) and end point (B)
+    var A = basePath.segments[0].point;
+    var B = basePath.segments[1].point;
+
+    // Baseline vector (start to end)
+    var delta = B - A;
+
+    // Slope of the baseline normal
+    var normal = new Point(delta.y * -1, delta.x).normalize();
+
+    // Vector B -> Mouse
+    var toMouse = event.point - B;
+
+    // Projection of toMouse onto normal
+    var f = normal * toMouse.length * Math.cos(normal.getAngleInRadians(toMouse));
+
+    // Draw box outline
+    box.segments[2].point = new Point(B.x + f.x, B.y + f.y);
+    box.segments[3].point = new Point(A.x + f.x, A.y + f.y);
   }
 }
 
