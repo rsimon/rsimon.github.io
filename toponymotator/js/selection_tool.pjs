@@ -67,7 +67,26 @@ function onMouseUp(event) {
     box.fillColor = '#aa0000';
     box.opacity = 0.2;
   } else if (fEditBox) {
+    var bounds = getBounds(box);
+    window.toponymotator.editform.open({x: ((bounds.maxX + bounds.minX) / 2), y: (bounds.maxY + 5)});
     reset();
   }
+}
+
+function getBounds(box) {
+  var maxX = box.segments[0].point.x;
+  var maxY = box.segments[0].point.y;
+  var minX = maxX;
+  var minY = maxY;
+
+  for (var i=1; i<4; i++) {
+    var p = box.segments[i].point;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y > maxY) maxY = p.y;
+    if (p.x < minX) minX = p.x;
+    if (p.y < minY) minY = p.y;
+  }
+
+  return {maxX: maxX, minX:minX, maxY:maxY, minY:minY};
 }
 
