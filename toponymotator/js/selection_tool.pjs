@@ -67,8 +67,8 @@ function onMouseUp(event) {
     box.fillColor = '#aa0000';
     box.opacity = 0.2;
   } else if (fEditBox) {
-    var bounds = getBounds(box);
-    window.toponymotator.editform.open({x: ((bounds.maxX + bounds.minX) / 2), y: (bounds.maxY + 5)});
+    // var bounds = getBounds(box);
+    // window.toponymotator.editform.open({x: ((bounds.maxX + bounds.minX) / 2), y: (bounds.maxY + 5)});
     reset();
   }
 }
