@@ -52,13 +52,26 @@
       });
      		
       function addOverlays() {
-        var ellipse = new No5.Seajax.Shapes.Ellipse(1500, 500);
-        ellipse.attachTo(viewer, 2000, 800);
-        ellipse.getElement().attr({"fill":"#0fff00", "stroke-color":"#ff0000"});
+        var shapes = new Array();
+        $.getJSON('mooskirchen_features.js', function(data) {
+          for (var i=0; i<data.length; i++) {
+            var vertices = data[i].corners;
+            var points = new Array();
+            for (var j=0; j<vertices.length; j++) {
+              points.push(new Seadragon.Point(vertices[j].x, vertices[j].y));
+            }
+
+            var polygon = new No5.Seajax.Shapes.Polygon(points);
+            polygon.getElement().attr({"fill":"#0fff00", "stroke-color":"#ff0000"});
+            polygon.attachTo(viewer);
+            shapes.push(polygon);
+          }
+        });
       
-        // TODO introduce a mechanism that eliminates the need to do this...
         setTimeout(function() {
-          ellipse.redraw(viewer);
+          for (var i=0;i<shapes.length;i++) {
+            shapes[i].redraw(viewer);  
+          }
         }, 500);
       }
     </script>
