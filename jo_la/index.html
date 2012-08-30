@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="resources/css/ext-all.css" />
+    <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="js/ext-all.js" type="text/javascript"></script>
+    <script>
+		var image = new Image();
+		var popup = 0;
+		
+		var padding = 5;
+		
+		function getSize(feature, padding) {
+			var x0 = feature.corners[0].x;
+			var y0 = feature.corners[0].y;
+			var x1 = feature.corners[1].x;
+			var y1 = feature.corners[1].y;
+			var x2 = feature.corners[2].x;
+			var y2 = feature.corners[2].y;
+			
+			var dim0 = Math.sqrt((x1-x0)*(x1-x0) + (y1-y0)*(y1-y0)) + 2 * padding;
+			var dim1 = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)) + 2 * padding;
+			
+			if(dim0 < dim1) {
+				return {width: dim1, height: dim0};
+			} else {
+				return {width: dim0, height: dim1};
+			}
+		}
+		
+		function getBoundingBox(feature, padding) {
+			var xmin = image.width;
+			var ymin = image.height;
+			var xmax = 0;
+			var ymax = 0;
+			for(var j = 0; j < feature.corners.length; j++) {
+				xmin = Math.min(xmin, feature.corners[j].x);
+				ymin = Math.min(ymin, feature.corners[j].y);
+				xmax = Math.max(xmax, feature.corners[j].x);
+				ymax = Math.max(ymax, feature.corners[j].y);
+			}
+			xmin = Math.max(xmin - padding, 0);
+			ymin = Math.max(ymin - padding, 0);
+			xmax = Math.min(xmax + padding, image.width);
+			ymax = Math.min(ymax + padding, image.height);
+			return [{x: xmin, y: ymin},{x: xmax, y: ymax}];
+		}
+		
+		function cropAndDrawFeature(canvas, feature) {
+			var context = canvas.getContext('2d');
+			
+			var size = getSize(feature, padding);
+			var width = size.width;
+			var height = size.height;
+			
+			var angle = feature.angle > 90 ? feature.angle - 180 : feature.angle;
+
+			var bbox = getBoundingBox(feature, padding);
+			var widthRect = bbox[1].x - bbox[0].x;
+			var heightRect = bbox[1].y - bbox[0].y;
+			
+			canvas.width = width;
+			canvas.height = height;
+			
+			var context = canvas.getContext('2d');
+			
+			context.translate(width/2, height/2);
+			context.rotate(-angle*Math.PI/180);
+			context.translate(-widthRect/2, -heightRect/2);
+			
+			context.drawImage(image,
+			  bbox[0].x, bbox[0].y, widthRect, heightRect, // Source clip rectangle
+			  0, 0, widthRect, heightRect);     // Destination rectangle
+		}
+		
+		function markFeature(canvas, feature) {
+			var context = canvas.getContext('2d');
+			var corner = feature.corners[0];
+			context.beginPath();
+			context.moveTo(corner.x, corner.y);
+			for(var j = feature.corners.length - 1; j >= 0; j--) {
+				corner = feature.corners[j];
+				context.lineTo(corner.x, corner.y);
+			}
+			context.lineWidth = 3.5;
+                        context.strokeStyle = '#ff0000';
+			context.stroke();
+		}
+		
+		function openPopup(anchor, feature) {
+			var panel;
+			popup = Ext.create('Ext.window.Window', {
+				title: 'New Toponym',
+				height: 152,
+				width: 200,
+				layout: 'fit',
+				frame: false,
+				border: false,
+				closable: true,
+				items: [
+					panel = Ext.create('Ext.panel.Panel', {
+						width: 200,
+						height: 100,
+						id:'popupCanvas',
+						items: {
+							xtype: 'box',
+							autoEl: {
+								tag: 'canvas',
+								height: 100
+							},
+							listeners: {
+								render: {
+									scope: this,
+									fn: function() {
+										cropAndDrawFeature(panel.items.items[0].el.dom, feature);
+									}
+								}
+							}
+						}
+					})
+
+				  /*
+				  Ext.create('Ext.form.field.Text', {
+					name: 'transcribe',
+					emptyText: 'Transcribe...',
+					width: 150
+				  }),
+
+				  Ext.create('Ext.Button', {
+					text: 'OK',
+					width: 40, 
+					handler: function() {
+					  w.close();
+					}
+				  })*/
+				]
+			});
+			
+			popup.showAt(anchor.x, anchor.y);
+		}
+
+	window.onload = function() {
+		// Load the JSON document
+		$.getJSON('Mooskirchen_Features.js', function(data) {
+			var mapCanvas = document.getElementById('map');
+			var mapContext = mapCanvas.getContext('2d');
+			var list = document.getElementById('list');
+
+			// Crop & rotate image on load
+			image.onload = function() {
+				mapCanvas.width = image.width;
+				mapCanvas.height = image.height;
+				mapContext.drawImage(image, 0, 0);
+				
+				for(var i = 0; i < data.length; i++) {
+					var container = document.createElement('div');
+					var canvas = document.createElement('canvas');
+					var label = document.createElement('h2');
+					label.setAttribute('id', i);
+					label.innerHTML = '#' + i;
+					container.appendChild(label);
+					container.appendChild(canvas);
+					list.appendChild(container);
+					
+					var feature = data[i];
+					
+					cropAndDrawFeature(canvas, feature);
+					markFeature(mapCanvas, feature);
+				}
+			}
+			image.src = 'Mooskirchen_Grazer_Feld.jpg';
+			
+			//add links to the map
+			var inside;
+			var hovered = -1;
+			var clicked = -1;
+			mapCanvas.addEventListener("mousemove", function(event) {
+				var cursor = "";
+				hovered = -1;
+				for(var i = 0; i < data.length; i++) {
+					var feature = data[i];
+					var bbox = getBoundingBox(feature, 0);
+					
+					var x = event.layerX - mapCanvas.offsetLeft;
+					var y = event.layerY - mapCanvas.offsetTop;
+					
+					if(x >= bbox[0].x && x <= bbox[1].x &&
+						y >= bbox[0].y && y <= bbox[1].y){
+						cursor = "pointer";
+						hovered = i;
+					}
+				}
+				document.body.style.cursor = cursor;
+			}, false);
+			mapCanvas.addEventListener("click", function(event) {
+				if(popup != 0) {
+					popup.close();
+				}
+				
+				if (hovered != -1)  {
+					openPopup({x: event.offsetX, y: event.offsetY}, data[hovered]);
+					// window.location = '#'+hovered;
+				}
+			}, false);
+        });
+	}
+    </script>
+  </head>
+  <body style="padding:10px">
+    <p style="font-size:15px; padding:20px 0px;">
+      An early experiment/proof-of-concept for using the Open Source computer vision 
+      toolkit <a href="http://opencv.willowgarage.com/">OpenCV</a> to automatically pre-identify 
+      candidate place name labels on scans of old maps. 
+    </p>
+    <h1>Original<h1>
+    <canvas id="map"></canvas>
+
+    <h1>Cropped &amp; Rotated</h1>
+	<div id="list"></div>
+  </body>
+</html>
