@@ -1,3 +1,8 @@
+body {
+  // TODO just a hack - find a decent solution
+  -webkit-user-select: none; 
+}
+
 .yuma-hint {
   font-family:Arial, Verdana, Sans;
   font-size:11px;
@@ -46,7 +51,15 @@
   transition-delay: 0s;
 }
 
-body {
-  -webkit-user-select: none; 
+.yuma-popup {
+  background-color:#fff;
+  border:1px solid black;
+  padding:3px 6px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
 }
+
+
 
