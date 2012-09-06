@@ -180,8 +180,8 @@
 					var feature = data[i];
 					var bbox = getBoundingBox(feature, 0);
 					
-					var x = event.layerX - mapCanvas.offsetLeft;
-					var y = event.layerY - mapCanvas.offsetTop;
+					var x = event.clientX - mapCanvas.offsetLeft;
+					var y = event.clientY - mapCanvas.offsetTop;
 					
 					if(x >= bbox[0].x && x <= bbox[1].x &&
 						y >= bbox[0].y && y <= bbox[1].y){
