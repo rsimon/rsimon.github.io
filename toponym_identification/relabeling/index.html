@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Relabeling Demo</title>
+    <style>
+    .maplayer {
+      position: absolute;
+      top:10px;
+      left:10px;
+    }
+
+    #relabeled {
+      opacity:0;
+
+      /* Firefox */
+      -moz-transition-property: opacity;
+      -moz-transition-duration: 0.8s;
+      -moz-transition-delay: 0s;
+      /* WebKit */
+      -webkit-transition-property: opacity;
+      -webkit-transition-duration: 0.8s;
+      -webkit-transition-delay: 0s;
+      /* Opera */
+      -o-transition-property: opacity;
+      -o-transition-duration: 0.8s;
+      -o-transition-delay: 0s;
+      /* Standard */
+      transition-property: opacity;
+      transition-duration: 0.8s;
+      transition-delay: 0s;
+    }
+
+    #content {
+      margin-top:620px;
+    }
+    </style>
+
+    <script>
+    function toggleLabels() {
+      var img = document.getElementById('relabeled');
+      if (img.style.opacity == 0) {
+        img.style.opacity = 1;
+      } else {
+        img.style.opacity = 0;
+      }
+    }
+    </script>
+  </head>
+
+  <body>
+    <img class="maplayer" id="original" src="../images/british_isles.jpg" />
+    <img class="maplayer" id="relabeled" src="../images/british_isles_relabeled.jpg" />
+    <div id="content">
+      <button onclick="javascript:toggleLabels();">Change Labels</button>
+    </div>
+  </body>
+</html>
