@@ -26,3 +26,11 @@ html, body {
   -webkit-box-shadow: 3px 3px 4px #000;
   box-shadow: 3px 3px 4px #000;
 }
+
+.popup {
+  border:2px solid black;
+  background-color:white;
+  -moz-box-shadow: 3px 3px 4px #000;
+  -webkit-box-shadow: 3px 3px 4px #000;
+  box-shadow: 3px 3px 4px #000;
+}
