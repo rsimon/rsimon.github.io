@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Kainachtal bei Mooskirchen und Lannach, Grazer Feld südwestlich von Graz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript" src="../js/seadragon-min.js"></script>
+    <script type="text/javascript" src="../js/raphael-min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../js/seajax-utils.js"></script>
+
+    <script type="text/javascript">
+      var viewer;
+
+      function onZoomitResponse(response) {
+        if (response.error) {
+          alert(response.error);
+          return;
+        }
+     
+        var content = response.content;
+        if (content.ready) {
+          viewer = new Seadragon.Viewer("viewer");
+          viewer.addEventListener("open", addOverlays);
+          viewer.openDzi(content.dzi);
+        } else if (content.failed) {
+          alert(content.url + " failed to convert.");
+        } else {
+          alert(content.url + " is " + Math.round(100 * content.progress) + "% done.");
+        }
+      }
+ 
+      $.ajax({
+        url: "http://api.zoom.it/v1/content/75hk",
+        dataType: "jsonp",
+        success: onZoomitResponse
+      });
+     		
+      function addOverlays() {
+        var shapes = new Array();
+        $.getJSON('josephinische_landesaufnahme_features.js', function(data) {
+          for (var i=0; i<data.length; i++) {
+            var vertices = data[i].corners;
+            var points = new Array();
+            for (var j=0; j<vertices.length; j++) {
+              points.push(new Seadragon.Point(vertices[j].x, vertices[j].y));
+            }
+
+            var polygon = new No5.Seajax.Shapes.Polygon(points);
+            polygon.getElement().attr({"fill":"#ff0000", "fill-opacity":"0.2", "stroke":"#ff0000"});
+            polygon.attachTo(viewer);
+            shapes.push(polygon);
+          }
+        });
+      
+        setTimeout(function() {
+          for (var i=0;i<shapes.length;i++) {
+            shapes[i].redraw(viewer);  
+          }
+        }, 500);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="viewer" width="100%" height="100%"></div>
+    <div id="info">
+      Place name labels on this map were identified automatically using image processing techniques (implemented with 
+      <a href="http://opencv.willowgarage.com">OpenCV</a>). <a href="mailto:rainer.simon@ait.ac.at">Contact us</a> for more
+      information!
+    </div>
+  </body>
+</html>
