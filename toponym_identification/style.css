@@ -1,3 +1,14 @@
 .captioned_image {
-  display:inline;
+  display:table-cell;
+  width:240px;
+  padding-right:10px;
+}
+
+.caption {
+  font-family:Arial, Sans;
+  line-height:140%;
+  width:240px;
+  height:70px;
+  padding:5px;
+  font-size:12px;
 }
