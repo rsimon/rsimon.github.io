@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Toponym Identificationon Old Maps</title>
@@ -5,93 +6,98 @@
   </head>
 
   <body>
-    <h1>Toponym Identification on Scanned Old Maps</h1>
-    <p>
-      This page showcases some experimental work on the automatic identification of 
-      <a href="http://en.wikipedia.org/wiki/Toponym">toponyms</a> on scanned old maps using
-      Open Source software. Fully automatic detection and transcription of place names
-      is, arguably, not achievable with today's technology. Therefore, our goal is to devise
-      semi-automated methods which eliminate as much as possible of the tedious manual
-      effort that is required to annotate map scans.
-    </p>
-
-    <p>
-      This work is in its earliest stages &amp; we have no offical project set up around this yet.
-      So bear with us regarding the bare-bone state of this site! (Many thanks go out to our intern
-      Peter, for taming OpenCV and devising increasingly clever image filtering methods!) 
-    </p> 
-
-    <h2>Automatic Toponym Detection</h2>
-    <p>
-      The first challenge is to identify <strong>where</strong> on the map place names are located. We
-      are experimenting with image processing techniques (using the Open Source
-      <a href="http://opencv.willowgarage.com">OpenCV</a> toolkit) and different types of maps. Examples
-      are below.
-    </p>
-
-    <div class="captioned_image">
-      <a href="detection/ptolemy_britain.html"><img src="images/british_isles_thumb.jpg" /></a>
-      <p class="caption">
-        Ptolemaic Map Of The British Isles, Ca. 1480 ff.. 60v-61 (British Library)
+    <div id="column">
+      <h1>Toponym Identification on Scanned Old Maps</h1>
+      <p>
+        This page showcases some experimental work on the automatic identification of 
+        <a href="http://en.wikipedia.org/wiki/Toponym">toponyms</a> on scanned old maps using
+        Open Source software. Fully automatic detection and transcription of place names
+        is, arguably, not achievable with today's technology. Therefore, our goal is to devise
+        semi-automated methods which eliminate as much as possible of the tedious manual
+        effort that is required to annotate map scans.
       </p>
-    </div>
 
-    <div class="captioned_image">
-      <a href="detection/portolan.html"><img src="images/portolan_thumb.jpg" /></a>
-      <p class="caption">
-        Salvator Oliva, Mediterranean. HM 2515. PORTOLAN ATLAS. Marseilles, 1619.<br/>
-        Source: <a href="http://commons.wikimedia.org/wiki/File:Salvator_Oliva._Mediterranean._HM_2515._PORTOLAN_ATLAS._Marseilles,_1619.B.jpg">Wikimedia Commons</a>
+      <p>
+        This work is in its earliest stages &amp; we have no offical project set up around this yet.
+        So bear with us regarding the bare-bone state of this site! (Many thanks go out to our intern
+        Peter, for taming OpenCV and devising increasingly clever image filtering methods!) 
       </p> 
-    </div>
 
-    <div class="captioned_image">
-      <a href="detection/josephinische_landesaufnahme.html"><img src="images/josephinische_landesaufnahme_thumb.jpg" /></a>
-      <p class="caption">
-        Josephinische Landesaufnahme: Gebiet von Mooskirchen bis Grazer Feld, Steiermark, Österreich, 1764-1787.<br/>
-        Source: 
-        <a href="http://de.wikipedia.org/w/index.php?title=Datei:Josephinische_Landesaufnahme_Mooskirchen_Grazer_Feld.jpg">Wikimedia
-        Commons</a>
+      <h2>Automatic Toponym Detection</h2>
+      <p>
+        The first challenge is to identify <strong>where</strong> on the map place names are located. We
+        are experimenting with image processing techniques (using the Open Source
+        <a href="http://opencv.willowgarage.com">OpenCV</a> toolkit) and different types of maps. Examples
+        are below.
+      </p>
+
+      <div class="captioned_image">
+        <a href="detection/ptolemy_britain.html"><img src="images/british_isles_thumb.jpg" /></a>
+        <p class="caption">
+          Ptolemaic Map Of The British Isles, Ca. 1480 ff.. 60v-61 (British Library)
+        </p>
+      </div>
+
+      <div class="captioned_image">
+        <a href="detection/portolan.html"><img src="images/portolan_thumb.jpg" /></a>
+        <p class="caption">
+          Salvator Oliva, Mediterranean. HM 2515. PORTOLAN ATLAS. Marseilles, 1619.<br/>
+          Source: <a href="http://commons.wikimedia.org/wiki/File:Salvator_Oliva._Mediterranean._HM_2515._PORTOLAN_ATLAS._Marseilles,_1619.B.jpg">Wikimedia Commons</a>
+        </p> 
+      </div>
+
+      <div class="captioned_image">
+        <a href="detection/josephinische_landesaufnahme.html"><img src="images/josephinische_landesaufnahme_thumb.jpg" /></a>
+        <p class="caption">
+          Josephinische Landesaufnahme: Gebiet von Mooskirchen bis Grazer Feld, Steiermark, Österreich, 1764-1787.<br/>
+          Source: 
+          <a href="http://de.wikipedia.org/w/index.php?title=Datei:Josephinische_Landesaufnahme_Mooskirchen_Grazer_Feld.jpg">Wikimedia
+          Commons</a>
+        </p>
+      </div>
+
+      <h2>Automatic Toponym Transcription</h2>
+      <a href="images/gamera_screenshot.jpg">
+        <img src="images/gamera_screenshot_thumb.jpg" style="float:right;border:1px solid black;margin-left:20px;">
+      </a>
+      <p>
+        Once we have identified candidates that may be place names, we need to transcribe them. Automating the
+        transcription is the most challenging step in the process. We are currently experimenting
+        with the document analysis framework <a href="http://gamera.informatik.hsnr.de/">Gamera</a> 
+        to get a feel for what can be achieved with state of the art tools.
+        Additionally, we aim to exploit the <strong>layout</strong> of identified candidates to deduce possible 
+        place names based on existing toponym lists: e.g. in the case of
+        <a href="http://en.wikipedia.org/wiki/Portolan_chart">portolan charts</a>, toponyms are arranged
+        in sequence along the coastline. This sequential ordering may potentially allow for some degree
+        of &quot;interpolation&quot; of unidentified names.
+      </p>
+
+      <h2>Manual Annotation</h2>
+      <p>
+        For most old maps, machines still fail miserably in map transcription tasks. Humans, on the other
+        hand, can read and transcribe place name labels with relative (depending on the type of map) ease. However, 
+        the sheer magnitude of the task makes it challenging to deal with: map collections often host 1.000s of maps,
+        each potentially containing 100s of place names. Our goal is to build tools that allow human users to 
+        <a href="http://github.com/rsimon/toponymotator">perform selection, transcription, and annotation tasks as 
+        efficiently as possible</a>, or to quickly validate and correct automatically generated results.
+      </p>
+
+      <h2>Annotated Maps: Use Cases</h2>
+      <p>
+        Once a map's place names are annotated, there are plenty of benefits. Enhanced search & linking with a historic
+        Gazetteer are likely the most important ones. But there are also more playful, casual use cases:
+  
+        <ul>
+          <li>
+            <strong>Map re-labelling.</strong> Using toponym detection and a technique called
+            <a href="http://en.wikipedia.org/wiki/Inpainting">inpainting</a>, we can replace the original labels
+            for better readability, or to &quot;translate&quot; them to their modern-day counterparts.
+            <a href="relabeling/index.html">See a demo.</a>
+          </li>
+
+          <li>...</li>
+        </ul> 
       </p>
     </div>
-
-    <h2>Automatic Toponym Transcription</h2>
-    <p>
-      Once we have identified candidates that may be place names, we need to transcribe them. Automating the
-      transcription is the most challenging step in the process. We are currently experimenting
-      with the document analysis framework <a href="http://gamera.informatik.hsnr.de/">Gamera</a> 
-      to get a feel for what can be achieved with state of the art tools.
-      Additionally, we aim to exploit the <strong>layout</strong> of identified candidates to deduce possible 
-      place names based on existing toponym lists: e.g. in the case of
-      <a href="http://en.wikipedia.org/wiki/Portolan_chart">portolan charts</a>, toponyms are arranged
-      in sequence along the coastline. This sequential ordering may potentially allow for some degree
-      of &quot;interpolation&quot; of unidentified names.
-    </p>
-
-    <h2>Manual Annotation</h2>
-    <p>
-      For most old maps, machines still fail miserably in map transcription tasks. Humans, on the other
-      hand, can read and transcribe place name labels with relative (depending on the type of map) ease. However, 
-      the sheer magnitude of the task makes it challenging to deal with: map collections often host 1.000s of maps,
-      each potentially containing 100s of place names. Our goal is to build tools that allow human users to 
-      <a href="http://github.com/rsimon/toponymotator">perform selection, transcription, and annotation tasks as 
-      efficiently as possible</a>, or to quickly validate and correct automatically generated results.
-    </p>
-
-    <h2>Annotated Maps: Use Cases</h2>
-    <p>
-      Once a map's place names are annotated, there are plenty of benefits. Enhanced search & linking with a historic
-      Gazetteer are likely the most important ones. But there are also more playful, casual use cases:
-
-      <ul>
-        <li>
-          <strong>Map re-labelling.</strong> Using toponym detection and a technique called
-          <a href="http://en.wikipedia.org/wiki/Inpainting">inpainting</a>, we can replace the original labels
-          for better readability, or to &quot;translate&quot; them to their modern-day counterparts.
-          <a href="relabeling/index.html">See a demo.</a>
-        </li>
-
-        <li>...</li>
-      </ul> 
-    </p>
   </body>
 </html>
