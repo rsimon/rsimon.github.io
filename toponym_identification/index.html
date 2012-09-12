@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Toponym Identificationon Old Maps</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -28,9 +29,17 @@
       are below.
     </p>
 
-    <a href="detection/ptolemy_britain.html"><img src="images/british_isles_thumb.jpg" /></a>
-    <a href="detection/portolan.html"><img src="images/portolan_thumb.jpg" /></a>
-    <a href="detection/josephinische_landesaufnahme.html"><img src="images/josephinische_landesaufnahme_thumb.jpg" /></a>
+    <div class="captioned_image">
+      <a href="detection/ptolemy_britain.html"><img src="images/british_isles_thumb.jpg" /></a>
+    </div>
+
+    <div class="captioned_image">
+      <a href="detection/portolan.html"><img src="images/portolan_thumb.jpg" /></a>
+    </div>
+
+    <div class="captioned_image">
+      <a href="detection/josephinische_landesaufnahme.html"><img src="images/josephinische_landesaufnahme_thumb.jpg" /></a>
+    </div>
 
     <h2>Automatic Toponym Transcription</h2>
     <p>
@@ -38,13 +47,11 @@
       transcription is the most challenging step in the process. We are currently experimenting
       with the document analysis framework <a href="http://gamera.informatik.hsnr.de/">Gamera</a> 
       to get a feel for what can be achieved with state of the art tools.
-    </p>
-    <p>
       Additionally, we aim to exploit the <strong>layout</strong> of identified candidates to deduce possible 
-      place names based on existing toponym lists. (E.g. in the case of
-      <a href="http://en.wikipedia.org/wiki/Portolan_chart">portolan charts</a>, place name labels are arranged
-      in sequence along the coastline. This may potentially allow for some degree of &quot;interpolation&quot;
-      of unidentified toponyms.)
+      place names based on existing toponym lists: e.g. in the case of
+      <a href="http://en.wikipedia.org/wiki/Portolan_chart">portolan charts</a>,toponyms are arranged
+      in sequence along the coastline. This sequential ordering may potentially allow for some degree
+      of &quot;interpolation&quot; of unidentified names.
     </p>
 
     <h2>Manual Annotation</h2>
@@ -54,7 +61,8 @@
       the sheer magnitude of the task makes it challenging to deal with: map collections often host 1.000s of maps,
       each potentially containing 100s of place names. Our goal is to build
       <a href="http://github.com/rsimon/toponymotator">tools that allow human users 
-      to perform selection, transcription, and annotation tasks as efficiently as possible</a>. 
+      to perform selection, transcription, and annotation tasks as efficiently as possible</a>, or quickly validate 
+      or correct automatically generated results.
     </p>
 
     <h2>Annotated Maps: Use Cases</h2>
