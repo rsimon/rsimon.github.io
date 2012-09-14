@@ -1,0 +1,48 @@
+html {
+  padding:0px;
+  margin:0px;
+}
+
+body {
+  background-color:#fafafa;
+  margin:0px;
+  padding:0px;
+  font-family:Verdana, Arial, Sans;
+  font-size:14px;
+  line-height:150%;
+}
+
+h1 {
+  margin:0px;
+  padding-bottom:20px;
+}
+
+h2 {
+  padding:15px 0px 0px 0px;
+  clear:both;
+}
+
+#column{
+  padding:25px 35px;
+  margin:0px auto;
+  max-width:750px;
+  background-color:white;
+  border-color:#f2f2f2;
+  border-style:solid;
+  border-width:0px 1px;
+}
+
+.captioned_image {
+  display:table-cell;
+  width:240px;
+  padding-right:10px;
+}
+
+.caption {
+  font-family:Arial, Sans;
+  line-height:140%;
+  width:240px;
+  height:70px;
+  padding:5px;
+  font-size:12px;
+}
