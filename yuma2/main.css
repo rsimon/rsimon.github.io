@@ -1,8 +1,5 @@
-body {
-  /* -webkit-user-select: none; */
-}
-
 .yuma-hint {
+  line-height: normal;
   font-family:Arial, Verdana, Sans;
   font-size:11px;
   color:#000;
@@ -52,6 +49,7 @@ body {
 }
 
 .yuma-popup {
+  line-height:normal;
   font-family:Arial, Verdana, Sans;
   font-size:12px;
   color:#000;
@@ -64,7 +62,34 @@ body {
   -khtml-border-radius: 5px;
 }
 
+.yuma-popup-action {
+  font-size:10px;
+  text-decoration:none;
+  display:inline-block;
+  color:#000;
+  font-weight:bold;
+  margin:0px 0px 0px 10px;
+  
+  /* Firefox */
+  -moz-transition-property: opacity;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-delay: 0s;
+  /* WebKit */
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  /* Opera */
+  -o-transition-property: opacity;
+  -o-transition-duration: 0.5s;
+  -o-transition-delay: 0s;
+  /* Standard */
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-delay: 0s;
+}
+
 .yuma-editform {
+  line-height: normal;
   padding:1px 1px 2px 1px;
   background-color:#ccc;	
   color:#000;
@@ -75,6 +100,7 @@ body {
 }
 
 .annotation-text {
+  line-height: normal;
   background-color:#fff;
   width:240px;
   height:50px;
@@ -94,6 +120,7 @@ body {
 }
 
 .yuma-button {
+  line-height: normal;
   display:inline-block;
   text-align:center;
   text-decoration:none;
