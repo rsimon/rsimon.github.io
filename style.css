@@ -5,7 +5,7 @@ body {
   font-size: 14px;
   color: #323232;
   line-height:160%
-}	
+}
 
 h1 {
   margin: 0px;
@@ -23,7 +23,7 @@ p {
   padding: 0px 0px 15px 0px;
 }
 
-.photo { 
+.photo {
   margin: 10px 25px 25px 0px;
   border-width: 1px;
   border-style: solid;
@@ -31,14 +31,19 @@ p {
   float: left;
 }
 
+.photo img {
+  width:150px;
+  height:225px;
+}
+
 #content .contactInfo { padding: 0px; }
 #content .contactInfo img { margin-right:5px; }
-#content .contactInfo a:hover { background-color: transparent; }	
+#content .contactInfo a:hover { background-color: transparent; }
 
 .intro { clear:both; }
 
 .award {
-  background-color: #E0E0E0; 
+  background-color: #E0E0E0;
   padding: 10px 15px;
   margin-top: 12px;
   margin-bottom: 15px;
@@ -78,8 +83,8 @@ p {
   text-shadow: 0px 1px 1px #232323;
 }
 
-#menu li:hover { 
-  border-bottom:6px solid #790B1A; 
+#menu li:hover {
+  border-bottom:6px solid #790B1A;
 }
 
 #menu li.active a { color: #E0E0E0; }
