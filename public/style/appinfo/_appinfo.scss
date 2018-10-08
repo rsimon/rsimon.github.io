@@ -1,0 +1,85 @@
+@import '../globals';
+
+.appinfo {
+
+  .header, .content, .footer {
+    padding:20px;
+  }
+
+  h1, h2 {
+    padding:0;
+    margin:0;
+    font-weight:normal;
+  }
+
+  .header h1 {
+    font-size:28px;
+  }
+
+  .content {
+
+    h2 {
+      font-size:23px;
+      color:darken($oeaw-blue, 8%);
+    }
+
+  }
+
+  .footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background-color:$oeaw-blue;
+    color:#fff;
+    line-height:140%;
+    box-sizing:border-box;
+
+    .imprint {
+      display:inline-block;
+      padding:0 15px;
+      span { display:block; }
+    }
+
+    .logo {
+      @include rounded-corners(1px);
+      display:inline;
+    }
+
+    .logo.oeaw {
+      width:81px;
+      height:70px;
+    }
+
+    .sponsored-by {
+      position:absolute;
+      right:240px;
+      bottom:20px;
+
+      .logo.ma7 {
+        width:149px;
+        height:46px;
+      }
+
+    }
+
+    .developed-by {
+      position:absolute;
+      right:20px;
+      bottom:20px;
+      text-align:right;
+
+      span {
+        display:block;
+        padding:0 3px 5px 0;
+      }
+
+    }
+
+    .logo.ait {
+      width:185px;
+      height:45px;
+    }
+
+  }
+
+}
